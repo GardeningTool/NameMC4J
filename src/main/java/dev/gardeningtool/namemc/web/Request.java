@@ -2,7 +2,6 @@ package dev.gardeningtool.namemc.web;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
@@ -76,7 +75,7 @@ public class Request {
     }
 
     /**
-     * @return A Map  object of the response
+     * @return A Map object of the response
      * @throws IllegalStateException If the connection has not yet been made
      * @throws IllegalStateException If the connection response code is 400
      * @throws IOException If the BufferedReader fails to read the response
@@ -85,18 +84,6 @@ public class Request {
         String content = getRawContent();
         Gson gson = new Gson();
         return gson.fromJson(content, Map.class);
-    }
-
-    /**
-     * @return A JsonElement object of the response
-     * @throws IllegalStateException If the connection has not yet been made
-     * @throws IllegalStateException If the connection response code is 400
-     * @throws IOException If the BufferedReader fails to read the response
-     */
-    public JsonElement toJsonElement() throws IllegalStateException, IOException {
-        String content = getRawContent();
-        Gson gson = new Gson();
-        return gson.fromJson(content, JsonElement.class);
     }
 
     /**
