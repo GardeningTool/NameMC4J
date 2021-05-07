@@ -6,10 +6,7 @@ import com.google.gson.JsonObject;
 import dev.gardeningtool.namemc.friend.Friend;
 import lombok.SneakyThrows;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class RequestUtil {
 
@@ -41,6 +38,19 @@ public class RequestUtil {
             throw new IllegalArgumentException(String.format("%s is not a valid username!", username));
         }
         return UUID.fromString(insertDashUUID(map.get("id").toString()));
+    }
+
+    /**
+     * @param ip The target server IP
+     */
+    @SneakyThrows
+    public static Collection<UUID> getLikes(Request request) {
+        JsonArray array = request.toJsonArray();
+        List<UUID> uuids = new ArrayList<>();
+        for(JsonElement element : array) {
+            uuids.add(UUID.fromString(element.getAsString()));
+        }
+        return uuids;
     }
 
     /**

@@ -1,11 +1,13 @@
-import dev.gardeningtool.namemc.friend.Friend;
-import dev.gardeningtool.namemc.profile.Profile;
+import dev.gardeningtool.namemc.server.Server;
+
+import java.util.UUID;
 
 public class NameMCAPITest {
 
     public static void main(String[] args) {
-        Profile profile = new Profile("lolitsalex");
-        profile.getFriends().stream().map(Friend::getUsername).forEach(System.out::println);
-        System.out.printf("%s has a total of %d friends!%n", profile.getUsername(), profile.getFriendsCount());
+        Server server = new Server("purpleprison.net");
+        server.getLikedUsers().stream().map(UUID::toString).forEach(System.out::println);
+
+        System.out.println(server.hasLiked("sadtool"));
     }
 }
