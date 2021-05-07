@@ -13,6 +13,11 @@ import java.util.UUID;
 
 public class RequestUtil {
 
+    /**
+     * @param uuid The UUID of the target to obtain the username of
+     * @return The username associated with the target UUID
+     * @throws IllegalArgumentException If the UUID is invalid
+     */
     @SneakyThrows
     public static String username(UUID uuid) throws IllegalArgumentException {
         Request request = getRequest("https://sessionserver.mojang.com/session/minecraft/profile/" + uuid.toString());
@@ -23,6 +28,11 @@ public class RequestUtil {
         return map.get("name").toString();
     }
 
+    /**
+     * @param username The username associated with a UUID
+     * @return The UUID of the specified argument
+     * @throws IllegalArgumentException If the username is invalid
+     */
     @SneakyThrows
     public static UUID uuid(String username) throws IllegalArgumentException {
         Request request = getRequest("https://api.mojang.com/users/profiles/minecraft/" + username + "?at=0");
@@ -33,6 +43,10 @@ public class RequestUtil {
         return UUID.fromString(insertDashUUID(map.get("id").toString()));
     }
 
+    /**
+     * @param uuid The UUID of the player to obtain the friends of
+     * @return The players that the player in the argument has added on NameMC
+     */
     @SneakyThrows
     public static List<Friend> friends(UUID uuid) {
         Request request = getRequest(String.format("https://api.namemc.com/profile/%s/friends/", uuid.toString()));
