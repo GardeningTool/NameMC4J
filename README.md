@@ -1,7 +1,11 @@
 # NameMC4J
 
-An unofficial Java based library for the NameMC API. The intention is for this library to be as lightweight and featureful as possible. NameMC4J depends on Gson, however it's not shaded into the JAR.
+An unofficial Java based library for the NameMC API. The intention is for this library to be as lightweight and featureful as possible. 
 
+## Dependencies
+
+  NameMC4J only depends on Gson, which is not shaded into the JAR.
+  
 # Usage
 
 ## Obtaining a profile
