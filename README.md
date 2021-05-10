@@ -14,7 +14,7 @@ Profile profile = new Profile("Notch");
 Profile profile = new Profile(UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38aaf5"))
 ```
 
-## Other methods within the Profile class
+## Obtaining friends from a profile
 
 The following will output basic information about a profile's friends
 ```java
@@ -24,11 +24,6 @@ System.out.printf("%s has a total of %d friends!", profile.getUsername(), profil
 ```
 
 ## Servers
-
-Instantiating a new Server object
-```java
-Server server = new Server("purpleprison.net");
-```
 
 Examples
 ```Java
