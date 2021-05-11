@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import dev.gardeningtool.namemc.friend.Friend;
 import lombok.SneakyThrows;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.*;
 
 public class RequestUtil {
@@ -41,7 +43,7 @@ public class RequestUtil {
     }
 
     /**
-     * @param ip The target server IP
+     * @param request the request to parse the likes of
      */
     @SneakyThrows
     public static Collection<UUID> getLikes(Request request) {
@@ -92,5 +94,16 @@ public class RequestUtil {
         sb = new StringBuilder(sb.toString());
         sb.insert(23, "-");
         return sb.toString();
+    }
+
+    /**
+     * @param username The target username
+     * @return Whether or not the player has an OptiFine cape
+     */
+    @SneakyThrows
+    public static boolean optifineCape(String username) {
+        URL url = new URL(String.format("http://s.optifine.net/capes/%s.png", username));
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        return connection.getResponseCode() != 404;
     }
 }

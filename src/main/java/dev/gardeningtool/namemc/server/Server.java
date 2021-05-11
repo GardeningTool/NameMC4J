@@ -11,9 +11,12 @@ import java.util.UUID;
 @Getter
 public class Server {
 
+    private final String ip;
     private final Collection<UUID> likedUsers;
 
     public Server(String ip) {
+        this.ip = ip;
+
         Request request = new Request(String.format("https://api.namemc.com/server/%s/likes", ip));
         request.prepare();
         request.connect();
@@ -33,6 +36,5 @@ public class Server {
     public boolean hasLiked(Profile profile) {
         return hasLiked(profile.getUuid());
     }
-
-
+    
 }

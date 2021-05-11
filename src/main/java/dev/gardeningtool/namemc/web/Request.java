@@ -66,6 +66,7 @@ public class Request {
      * @return A JsonArray  object of the response
      * @throws IllegalStateException If the connection has not yet been made
      * @throws IllegalStateException If the connection response code is 400
+     * @throws IllegalStateException If too many requests are being sent
      * @throws IOException If the BufferedReader fails to read the response
      */
     public JsonArray toJsonArray() throws IllegalStateException, IOException {
@@ -78,6 +79,7 @@ public class Request {
      * @return A Map object of the response
      * @throws IllegalStateException If the connection has not yet been made
      * @throws IllegalStateException If the connection response code is 400
+     * @throws IllegalStateException If too many requests are being sent
      * @throws IOException If the BufferedReader fails to read the response
      */
     public Map<?, ?> map() throws IllegalStateException, IOException {
@@ -90,6 +92,7 @@ public class Request {
      * @return The response from NameMC, as a String
      * @throws IllegalStateException If the connection has not yet been made
      * @throws IllegalStateException If the connection response code is 400
+     * @throws IllegalStateException If too many requests are being sent
      * @throws IOException If the BufferedReader fails to read the response
      */
     private String getRawContent() throws IllegalStateException, IOException {
@@ -98,6 +101,9 @@ public class Request {
         }
         if (responseCode == 400) {
             throw new IllegalStateException("Connection failed! Cannot read as JSON!");
+        }
+        if (responseCode == 429) {
+            throw new IllegalStateException("Rate limited!");
         }
         InputStream inputStream = connection.getInputStream();
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
