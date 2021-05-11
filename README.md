@@ -22,9 +22,14 @@ Profile profile = new Profile(UUID.fromString("069a79f4-44e9-4726-a5be-fca90e38a
 
 The following will output basic information about a profile's friends
 ```java
-Profile profile = new Profile("sadtool");
 profile.getFriends().stream().map(Friend::getUsername).forEach(System.out::println);
 System.out.printf("%s has a total of %d friends!%n", profile.getUsername(), profile.getFriendsCount());
+```
+
+## Capes
+
+```java
+Profile profile = new Profile("sadtool");
 System.out.printf("Does %s have an OptiFine cape? %b!", profile.getUsername(), profile.hasOptifineCape());
 ```
 
