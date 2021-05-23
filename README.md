@@ -2,6 +2,8 @@
 
 An unofficial Java based library for the NameMC API. The intention is for this library to be as lightweight and featureful as possible. 
 
+This library also has a few methods which are not included in the NameMC API, such as determining whether or not the profile has an OptiFine cape.
+
 ## Dependencies
 
   NameMC4J only depends on Gson, which is not shaded into the JAR.
