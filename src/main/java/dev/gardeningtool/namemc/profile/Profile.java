@@ -5,6 +5,7 @@ import dev.gardeningtool.namemc.web.RequestUtil;
 import lombok.Getter;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.UUID;
 
 public class Profile {
@@ -12,6 +13,7 @@ public class Profile {
     private final UUID uuid;
     private final String username;
     private final Collection<Friend> friends;
+    private final Map<String, Long> previousNames;
     private final long cachedTimestamp = System.currentTimeMillis();
     private final boolean hasOptifineCape;
 
@@ -20,6 +22,7 @@ public class Profile {
         this.username = RequestUtil.username(uuid);
         this.friends = RequestUtil.friends(uuid);
         this.hasOptifineCape = RequestUtil.optifineCape(username);
+        this.previousNames = RequestUtil.previousNames(uuid);
     }
 
     public Profile(String username) {
@@ -27,6 +30,7 @@ public class Profile {
         this.uuid = RequestUtil.uuid(username);
         this.friends = RequestUtil.friends(uuid);
         this.hasOptifineCape = RequestUtil.optifineCape(username);
+        this.previousNames = RequestUtil.previousNames(uuid);
     }
 
     public int getFriendsCount() {
@@ -47,6 +51,10 @@ public class Profile {
 
     public Collection<Friend> getFriends() {
         return friends;
+    }
+
+    public Map<String, Long> getPreviousNames() {
+        return previousNames;
     }
 
     public long getCachedTimestamp() {

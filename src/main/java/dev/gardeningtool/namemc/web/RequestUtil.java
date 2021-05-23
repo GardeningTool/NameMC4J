@@ -72,6 +72,19 @@ public class RequestUtil {
     }
 
     @SneakyThrows
+    public static Map<String, Long> previousNames(UUID uuid) {
+        Request request = getRequest(String.format("https://api.mojang.com/user/profiles/%s/names", uuid.toString()));
+        JsonArray array = request.toJsonArray();
+        Map<String, Long> previousNames = new HashMap<>();
+        for(JsonElement element : array) {
+            JsonObject object = element.getAsJsonObject();
+            long timeCreated = object.get("changedToAt") == null ? 0 : object.get("changedToAt").getAsLong();
+            previousNames.put(object.get("name").getAsString(), timeCreated);
+        }
+        return previousNames;
+    }
+
+    @SneakyThrows
     private static Request getRequest(String url) {
         Request request = new Request(url);
         request.prepare();
