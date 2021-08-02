@@ -2,7 +2,7 @@
 
 An unofficial Java based library for the NameMC API. The intention is for this library to be as lightweight and featureful as possible. 
 
-This library also has a few methods which are not included in the NameMC API, such as determining whether or not the profile has an OptiFine cape.
+This library also includes some features which are not included in NameMC's API, however do relate to the player, such as determining whether or not the profile has an OptiFine cape.
 
 ## Dependencies
 
@@ -26,7 +26,7 @@ The following will output basic information about a profile's friends
 ```java
 profile.getFriends().stream().map(Friend::getUsername).forEach(System.out::println);
 System.out.printf("%s has a total of %d friends!%n", profile.getUsername(), profile.getFriendsCount());
-map.forEach((name, timestamp) -> System.out.printf("Name %s %s%n", name, timestamp == 0 ? "is the original IGN" : "was changed at timestamp " + timestamp));
+profile.getPreviousNames().forEach((name, timestamp) -> System.out.printf("Name %s %s%n", name, timestamp == 0 ? "is the original IGN" : "was changed at timestamp " + timestamp));
 ```
 
 ## Capes
